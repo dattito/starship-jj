@@ -71,6 +71,7 @@ pub struct BookmarkConfig {
     #[serde(default)]
     #[cfg(feature = "json-schema")]
     pub exclude: Vec<String>,
+    #[serde(default)]
     #[cfg(not(feature = "json-schema"))]
     pub exclude: Vec<Glob>,
 }
