@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
+## [0.4.1](https://gitlab.com/lanastara_foss/starship-jj/-/compare/0.4.0..0.4.1) - 2025-06-24
+
+### 🐛 Bug Fixes
+
+- error without config file- ([517f2f2](https://gitlab.com/lanastara_foss/starship-jj/-/commit/517f2f27c233aa7a884d0f32f9e81bbdcb7fb0cc)) - Lilly Mannhal
 ## [0.4.0](https://gitlab.com/lanastara_foss/starship-jj/-/compare/0.3.2..0.4.0) - 2025-06-19
 
 ### 🚀 Features
