@@ -14,6 +14,9 @@ pub struct Commit {
     /// Maximum length the commit text will be truncated to.
     #[serde(default = "default_max_length")]
     max_length: Option<usize>,
+    /// The text that should be printed when the current revision has no description yet
+    #[serde(default = "default_empty_text")]
+    empty_text: String,
     /// Controls how the commit text is rendered.
     #[serde(flatten)]
     style: Style,
@@ -25,6 +28,9 @@ pub struct Commit {
 fn default_max_length() -> Option<usize> {
     Some(24)
 }
+fn default_empty_text() -> String {
+    "(no description set)".to_string()
+}
 
 fn default_surround_with_quotes() -> bool {
     true
@@ -35,6 +41,7 @@ impl Default for Commit {
         Self {
             style: Default::default(),
             max_length: default_max_length(),
+            empty_text: default_empty_text(),
             surround_with_quotes: true,
         }
     }
@@ -63,6 +70,15 @@ impl Commit {
                 self.max_length,
                 io,
                 first_line,
+                self.surround_with_quotes,
+            )?;
+            write!(io, "{module_separator}")?;
+        } else {
+            self.style.print(io, None)?;
+            crate::print_ansi_truncated(
+                self.max_length,
+                io,
+                &self.empty_text,
                 self.surround_with_quotes,
             )?;
             write!(io, "{module_separator}")?;
