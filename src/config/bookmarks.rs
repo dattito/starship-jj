@@ -28,6 +28,9 @@ pub struct Bookmarks {
     max_bookmarks: Option<usize>,
     /// Maximum length the bookmark name will be truncated to.
     max_length: Option<usize>,
+    /// Do not render quotes around bookmark names
+    #[serde(default = "default_surround_with_quotes")]
+    surround_with_quotes: bool,
 }
 
 fn default_style() -> Style {
@@ -45,6 +48,10 @@ fn default_separator() -> String {
     " ".to_string()
 }
 
+fn default_surround_with_quotes() -> bool {
+    true
+}
+
 impl Default for Bookmarks {
     fn default() -> Self {
         Self {
@@ -53,6 +60,7 @@ impl Default for Bookmarks {
             max_bookmarks: Default::default(),
             separator: default_separator(),
             max_length: Default::default(),
+            surround_with_quotes: true,
         }
     }
 }
@@ -99,7 +107,7 @@ impl Bookmarks {
                 if counter > 0 {
                     write!(io, "{}", self.separator)?;
                 }
-                crate::print_ansi_truncated(self.max_length, io, name)?;
+                crate::print_ansi_truncated(self.max_length, io, name, self.surround_with_quotes)?;
                 if behind != 0 {
                     match self.behind_symbol {
                         Some(s) => write!(io, "{s}{}", behind)?,
