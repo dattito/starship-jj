@@ -17,10 +17,17 @@ pub struct Commit {
     /// Controls how the commit text is rendered.
     #[serde(flatten)]
     style: Style,
+    /// Do not render quotes around the description
+    #[serde(default = "default_surround_with_quotes")]
+    surround_with_quotes: bool,
 }
 
 fn default_max_length() -> Option<usize> {
     Some(24)
+}
+
+fn default_surround_with_quotes() -> bool {
+    true
 }
 
 impl Default for Commit {
@@ -28,6 +35,7 @@ impl Default for Commit {
         Self {
             style: Default::default(),
             max_length: default_max_length(),
+            surround_with_quotes: true,
         }
     }
 }
@@ -51,7 +59,12 @@ impl Commit {
         if !first_line.is_empty() {
             self.style.print(io, None)?;
 
-            crate::print_ansi_truncated(self.max_length, io, first_line)?;
+            crate::print_ansi_truncated(
+                self.max_length,
+                io,
+                first_line,
+                self.surround_with_quotes,
+            )?;
             write!(io, "{module_separator}")?;
         }
         Ok(())

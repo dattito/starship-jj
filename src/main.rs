@@ -214,7 +214,10 @@ fn print_ansi_truncated(
     max_length: Option<usize>,
     io: &mut impl Write,
     name: &str,
+    surround_with_quotes: bool,
 ) -> Result<(), CommandError> {
+    let maybe_quotes = if surround_with_quotes { "\"" } else { "" };
+
     match max_length {
         Some(max_len) if ansi_width::ansi_width(name) > max_len => {
             let ansi_max_len = name
@@ -224,10 +227,16 @@ fn print_ansi_truncated(
                 .last()
                 .unwrap_or_default();
 
-            write!(io, "\"{}…\"", &name[..ansi_max_len])?;
+            write!(
+                io,
+                "{}{}…{}",
+                maybe_quotes,
+                &name[..ansi_max_len],
+                maybe_quotes
+            )?;
         }
         _ => {
-            write!(io, "\"{}\"", name)?;
+            write!(io, "{}{}{}", maybe_quotes, name, maybe_quotes)?;
         }
     }
     Ok(())
