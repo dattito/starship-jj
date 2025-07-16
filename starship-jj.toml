@@ -24,6 +24,8 @@ behind_symbol = "⇡"
 # max_bookmarks = 1
 # Maximum length the bookmark name will be truncated to.
 # max_length = 10
+# Surround the bookmark names with double-quotes
+# surround_with_quotes = true
 
 [[module]]
 # Prints the working copies commit text
@@ -34,6 +36,8 @@ max_length = 24
 # bg_color = "Yellow"
 # default text if the commit description is not set
 # empty_text = "(no description set)"
+# Surround the commit text with double-quotes
+# surround_with_quotes = true
 
 [[module]]
 # Prints a warning if the working copy contains any conflicts, is divergent or hidden
