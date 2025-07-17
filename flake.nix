@@ -67,6 +67,7 @@
                   description
                   longDescription
                   ;
+                mainProgram = pname;
               };
             };
       in
