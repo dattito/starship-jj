@@ -45,10 +45,17 @@ pub struct GlobalConfig {
     /// Controls the behaviour of the bookmark finding algorythm.
     #[serde(default)]
     pub bookmarks: BookmarkConfig,
+    /// Controls whether color gets reset at the end.
+    #[serde(default = "default_reset_color")]
+    pub reset_color: bool,
 }
 
 fn default_separator() -> String {
     " ".to_string()
+}
+
+fn default_reset_color() -> bool {
+    true
 }
 
 fn default_modules() -> Vec<ModuleConfig> {
@@ -140,7 +147,9 @@ impl Config {
                 }
             }
         }
-        util::Style::default().print(&mut io, None)?;
+        if self.global.reset_color {
+            util::Style::default().print(&mut io, None)?;
+        }
         Ok(())
     }
 }
@@ -164,6 +173,7 @@ impl Default for Config {
                 timeout: Default::default(),
                 module_separator: default_separator(),
                 bookmarks: Default::default(),
+                reset_color: Default::default(),
             },
             modules: default_modules(),
         }
