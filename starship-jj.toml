@@ -19,7 +19,12 @@ exclude = []
 type = "Bookmarks"
 # Text that will be rendered between each bookmark.
 separator = " "
+# Color the text will be rendered in. One of Black, Red, Green, Yellow, Blue, Magenta, Cyan, White,
+# BrightBlack, BrightRed, BrightGreen, BrightYellow, BrightBlue, BrightMagenta, BrightCyan, BrightWhite
 color = "Magenta"
+# True RGB Color can also be used like this. Do not use both color and color.TrueColor at the same time!
+# color.TrueColor = [255, 255, 255]
+# Text background color. Can also be TrueColor.
 # bg_color = "Yellow"
 # A suffix that will be printed when the given bookmark is behing the working copy.
 behind_symbol = "⇡"
@@ -68,9 +73,9 @@ disabled = false
 text = "(IMMUTABLE)"
 color = "Yellow"
 
-[module.hidden]
+[module.empty]
 disabled = false
-text = "(HIDDEN)"
+text = "(EMPTY)"
 color = "Yellow"
 
 [[module]]
@@ -97,7 +102,7 @@ color = "Green"
 
 [module.removed_lines]
 # Controlls how the number of removed lines is rendered.
-yprefix = "-"
+prefix = "-"
 # suffix = ""
 color = "Red"
 # bg_color = "Yellow"
