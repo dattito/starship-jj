@@ -46,9 +46,9 @@ test:junit-report:
   before_script:
     - *global_before
   script:
+    - mkdir $CI_PROJECT_DIR/tests/
     - rustc --version && cargo --version
-    - cargo install junitify
-    - cargo test --workspace -- --format=json -Z unstable-options --report-time | junitify --out $CI_PROJECT_DIR/tests/
+    - cargo test --workspace -- --format=junit --Z unstable-options >| $CI_PROJECT_DIR/tests/coverage.xml
   artifacts:
     when: always
     reports:
