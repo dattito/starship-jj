@@ -115,9 +115,14 @@ audit:clippy:
   before_script:
     - *global_before
     - rustup component add clippy
+    - cargo install gitlab-report
   script:
     - rustc --version && cargo --version
-    - cargo clippy
+    - cargo clippy --message-format=json | gitlab-report -p clippy > gl-code-quality-report.json
+  artifacts:
+    when: always
+    reports:
+      codequality: $CI_PROJECT_DIR/gl-code-quality-report.json
 
 # build:doc:
 #   rules:
