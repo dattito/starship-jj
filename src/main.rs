@@ -17,6 +17,10 @@ mod args;
 mod config;
 mod state;
 
+pub mod built_info {
+    include!(concat!(env!("OUT_DIR"), "/built.rs"));
+}
+
 fn starship(
     ui: &mut Ui,
     command_helper: &CommandHelper,
@@ -201,6 +205,12 @@ fn main() -> ExitCode {
     let start = std::time::Instant::now();
     let print_timing = std::env::var("STARSHIP_JJ_TIMING").is_ok();
     let clirunner = CliRunner::init();
+    let clirunner = clirunner.name("starship-jj");
+    let clirunner = clirunner.version(&format!(
+        "{} {}",
+        crate::built_info::PKG_VERSION,
+        crate::built_info::GIT_COMMIT_HASH_SHORT.unwrap()
+    ));
     let clirunner = clirunner.add_subcommand(starship);
     let e = clirunner.run();
     let elapsed = start.elapsed();
