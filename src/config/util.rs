@@ -46,12 +46,12 @@ impl Style {
 
         let fallback = fallback.into().unwrap_or_default();
 
-        if let Some(color) = self.color.or_else(|| fallback.color) {
+        if let Some(color) = self.color.or(fallback.color) {
             write!(io, "{}", colored::Color::from(color).to_fg_str())?;
         } else {
             write!(io, "39")?;
         }
-        if let Some(color) = self.bg_color.or_else(|| fallback.bg_color) {
+        if let Some(color) = self.bg_color.or(fallback.bg_color) {
             write!(io, ";{}", colored::Color::from(color).to_bg_str())?;
         } else {
             write!(io, ";49")?;
@@ -66,13 +66,13 @@ impl Style {
 
         let fallback = fallback.into().unwrap_or_default();
 
-        if let Some(color) = self.color.or_else(|| fallback.color) {
+        if let Some(color) = self.color.or(fallback.color) {
             s.push_str(colored::Color::from(color).to_fg_str().as_ref());
         } else {
             s.push_str("39");
         }
         s.push(';');
-        if let Some(color) = self.bg_color.or_else(|| fallback.bg_color) {
+        if let Some(color) = self.bg_color.or(fallback.bg_color) {
             s.push_str(colored::Color::from(color).to_bg_str().as_ref());
         } else {
             s.push_str("49");

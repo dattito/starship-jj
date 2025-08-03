@@ -180,7 +180,7 @@ impl Metrics {
 
         self.style.print(io, default_style())?;
 
-        write!(io, "{}{module_separator}", s)?;
+        write!(io, "{s}{module_separator}")?;
 
         Ok(())
     }

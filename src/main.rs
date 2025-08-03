@@ -17,6 +17,10 @@ mod args;
 mod config;
 mod state;
 
+pub mod built_info {
+    include!(concat!(env!("OUT_DIR"), "/built.rs"));
+}
+
 fn starship(
     ui: &mut Ui,
     command_helper: &CommandHelper,
@@ -37,12 +41,12 @@ fn starship(
         StarshipCommands::Config(ConfigCommands::Path) => {
             let config_dir = get_config_path()?;
 
-            writeln!(ui.stdout(), "{}", config_dir)?;
+            writeln!(ui.stdout(), "{config_dir}")?;
         }
         StarshipCommands::Config(ConfigCommands::Default) => {
             let c = toml::to_string_pretty(&config::Config::default()).map_err(user_error)?;
 
-            writeln!(ui.stdout(), "{}", c)?;
+            writeln!(ui.stdout(), "{c}")?;
         }
     }
 
@@ -201,6 +205,12 @@ fn main() -> ExitCode {
     let start = std::time::Instant::now();
     let print_timing = std::env::var("STARSHIP_JJ_TIMING").is_ok();
     let clirunner = CliRunner::init();
+    let clirunner = clirunner.name("starship-jj");
+    let clirunner = clirunner.version(&format!(
+        "{} {}",
+        crate::built_info::PKG_VERSION,
+        crate::built_info::GIT_COMMIT_HASH_SHORT.unwrap()
+    ));
     let clirunner = clirunner.add_subcommand(starship);
     let e = clirunner.run();
     let elapsed = start.elapsed();
@@ -236,7 +246,7 @@ fn print_ansi_truncated(
             )?;
         }
         _ => {
-            write!(io, "{}{}{}", maybe_quotes, name, maybe_quotes)?;
+            write!(io, "{maybe_quotes}{name}{maybe_quotes}")?;
         }
     }
     Ok(())
