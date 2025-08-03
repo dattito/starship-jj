@@ -41,12 +41,12 @@ fn starship(
         StarshipCommands::Config(ConfigCommands::Path) => {
             let config_dir = get_config_path()?;
 
-            writeln!(ui.stdout(), "{}", config_dir)?;
+            writeln!(ui.stdout(), "{config_dir}")?;
         }
         StarshipCommands::Config(ConfigCommands::Default) => {
             let c = toml::to_string_pretty(&config::Config::default()).map_err(user_error)?;
 
-            writeln!(ui.stdout(), "{}", c)?;
+            writeln!(ui.stdout(), "{c}")?;
         }
     }
 
@@ -246,7 +246,7 @@ fn print_ansi_truncated(
             )?;
         }
         _ => {
-            write!(io, "{}{}{}", maybe_quotes, name, maybe_quotes)?;
+            write!(io, "{maybe_quotes}{name}{maybe_quotes}")?;
         }
     }
     Ok(())

@@ -31,12 +31,15 @@
           "max_bookmarks": null,
           "max_length": null,
           "separator": " ",
+          "surround_with_quotes": true,
           "type": "Bookmarks"
         },
         {
           "bg_color": null,
           "color": null,
+          "empty_text": "(no description set)",
           "max_length": 24,
+          "surround_with_quotes": true,
           "type": "Commit"
         },
         {
@@ -107,6 +110,11 @@
       "description": "Text that will be printed between each Module.",
       "default": " ",
       "type": "string"
+    },
+    "reset_color": {
+      "description": "Controls whether color gets reset at the end.",
+      "default": true,
+      "type": "boolean"
     },
     "timeout": {
       "description": "Timeout after wich the process is teminated.",
@@ -341,6 +349,11 @@
               "default": " ",
               "type": "string"
             },
+            "surround_with_quotes": {
+              "description": "Do not render quotes around bookmark names",
+              "default": true,
+              "type": "boolean"
+            },
             "type": {
               "type": "string",
               "enum": [
@@ -378,6 +391,11 @@
                 }
               ]
             },
+            "empty_text": {
+              "description": "The text that should be printed when the current revision has no description yet",
+              "default": "(no description set)",
+              "type": "string"
+            },
             "max_length": {
               "description": "Maximum length the commit text will be truncated to.",
               "default": 24,
@@ -387,6 +405,11 @@
               ],
               "format": "uint",
               "minimum": 0.0
+            },
+            "surround_with_quotes": {
+              "description": "Do not render quotes around the description",
+              "default": true,
+              "type": "boolean"
             },
             "type": {
               "type": "string",

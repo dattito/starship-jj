@@ -110,8 +110,8 @@ impl Bookmarks {
                 crate::print_ansi_truncated(self.max_length, io, name, self.surround_with_quotes)?;
                 if behind != 0 {
                     match self.behind_symbol {
-                        Some(s) => write!(io, "{s}{}", behind)?,
-                        None => write!(io, "{}", behind)?,
+                        Some(s) => write!(io, "{s}{behind}")?,
+                        None => write!(io, "{behind}")?,
                     }
                 }
                 counter += 1;

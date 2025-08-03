@@ -2,11 +2,36 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
+## [0.5.0](https://gitlab.com/lanastara_foss/starship-jj/-/compare/0.4.1..0.5.0) - 2025-08-03
+
+### 🚀 Features
+
+- Make quotes around truncated strings configurable- ([!20](https://gitlab.com/lanastara_foss/starship-jj/-/merge_requests/20)) - Christoph Hennemann
+- Introduce a configurable empty text in the commit module- ([eeb8735](https://gitlab.com/lanastara_foss/starship-jj/-/commit/eeb8735cde489a99a3f0fcb042004face6c0cf36)) - Christoph Hennemann
+- Introduce configuration to disable reset of colors- ([11fb3bc](https://gitlab.com/lanastara_foss/starship-jj/-/commit/11fb3bc01345223e48f982062993a8ce742cb68b)) - blufony
+- add git ref to version- ([a87a134](https://gitlab.com/lanastara_foss/starship-jj/-/commit/a87a134d839d9cfe095a379ed9a2a5f106c1763c)) - Lilly Mannhal
+
+### 📚 Documentation
+
+- **(contributing)** Coc and usage of AI tools specification- ([!26](https://gitlab.com/lanastara_foss/starship-jj/-/merge_requests/26)) - Lilly Mannhal
+- Add sample configuration for the empty_text of the commit module- ([!21](https://gitlab.com/lanastara_foss/starship-jj/-/merge_requests/21)) - Christoph Hennemann
+- Add sample configuration for the surround_with_quotes for the bookmarks and commit modules- ([!22](https://gitlab.com/lanastara_foss/starship-jj/-/merge_requests/22)) - Christoph Hennemann
+- Add sample configuration for reset_color- ([!25](https://gitlab.com/lanastara_foss/starship-jj/-/merge_requests/25)) - blufony
+- fix sample configuration- ([9955419](https://gitlab.com/lanastara_foss/starship-jj/-/commit/9955419397fd7e5cdf5e944a4c67c787a17629a5)) - blufony
+- add explanation to colors- ([!23](https://gitlab.com/lanastara_foss/starship-jj/-/merge_requests/23)) - blufony
+
+### ⚙️ Miscellaneous Tasks
+
+- add meta.mainProgram- ([!24](https://gitlab.com/lanastara_foss/starship-jj/-/merge_requests/24)) - Lia Schütze
 ## [0.4.1](https://gitlab.com/lanastara_foss/starship-jj/-/compare/0.4.0..0.4.1) - 2025-06-24
 
 ### 🐛 Bug Fixes
 
 - error without config file- ([517f2f2](https://gitlab.com/lanastara_foss/starship-jj/-/commit/517f2f27c233aa7a884d0f32f9e81bbdcb7fb0cc)) - Lilly Mannhal
+
+### ⚙️ Miscellaneous Tasks
+
+- **(release)** prepare 0.4.1- ([!19](https://gitlab.com/lanastara_foss/starship-jj/-/merge_requests/19)) - Lilly Mannhal
 ## [0.4.0](https://gitlab.com/lanastara_foss/starship-jj/-/compare/0.3.2..0.4.0) - 2025-06-19
 
 ### 🚀 Features
