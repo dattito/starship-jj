@@ -209,7 +209,7 @@ fn main() -> ExitCode {
     let clirunner = clirunner.version(&format!(
         "{} {}",
         crate::built_info::PKG_VERSION,
-        crate::built_info::GIT_COMMIT_HASH_SHORT.unwrap()
+        crate::built_info::GIT_COMMIT_HASH_SHORT.unwrap_or_default()
     ));
     let clirunner = clirunner.add_subcommand(starship);
     let e = clirunner.run();
