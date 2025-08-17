@@ -80,6 +80,7 @@
             rust-analyzer
             rustDevToolchain
             cargo-audit
+            cargo-deny
           ];
           inputsFrom = [ self.packages."${system}".default ];
         };

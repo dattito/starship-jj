@@ -12,6 +12,7 @@ use jj_cli::{
 use jj_lib::{backend::CommitId, store::Store, view::View};
 
 pub use state::State;
+use unicode_width::UnicodeWidthStr as _;
 
 mod args;
 mod config;
@@ -229,11 +230,11 @@ fn print_ansi_truncated(
     let maybe_quotes = if surround_with_quotes { "\"" } else { "" };
 
     match max_length {
-        Some(max_len) if ansi_width::ansi_width(name) > max_len => {
+        Some(max_len) if name.width() > max_len => {
             let ansi_max_len = name
                 .char_indices()
                 .map(|(i, _)| i)
-                .take_while(|i| ansi_width::ansi_width(&name[..*i]) < max_len)
+                .take_while(|i| name[..*i].width() < max_len)
                 .last()
                 .unwrap_or_default();
 
