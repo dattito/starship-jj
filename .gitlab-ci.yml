@@ -46,9 +46,9 @@ test:junit-report:
   before_script:
     - *global_before
   script:
+    - mkdir $CI_PROJECT_DIR/tests/
     - rustc --version && cargo --version
-    - cargo install junitify
-    - cargo test --workspace -- --format=json -Z unstable-options --report-time | junitify --out $CI_PROJECT_DIR/tests/
+    - cargo test --workspace -- --format=junit --Z unstable-options >| $CI_PROJECT_DIR/tests/coverage.xml
   artifacts:
     when: always
     reports:
@@ -115,9 +115,14 @@ audit:clippy:
   before_script:
     - *global_before
     - rustup component add clippy
+    - cargo install gitlab-report
   script:
     - rustc --version && cargo --version
-    - cargo clippy
+    - cargo clippy --message-format=json | gitlab-report -p clippy > gl-code-quality-report.json
+  artifacts:
+    when: always
+    reports:
+      codequality: $CI_PROJECT_DIR/gl-code-quality-report.json
 
 # build:doc:
 #   rules:
