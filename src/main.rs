@@ -1,4 +1,10 @@
-use std::{collections::BTreeMap, io::Write, path::PathBuf, process::ExitCode, sync::Arc};
+use std::{
+    collections::{BTreeMap, HashSet},
+    io::Write,
+    path::PathBuf,
+    process::ExitCode,
+    sync::Arc,
+};
 
 use ::config::Environment;
 use args::{ConfigCommands, CustomCommand, StarshipCommands};
@@ -162,7 +168,12 @@ fn find_parent_bookmarks(
     bookmarks: &mut BTreeMap<String, usize>,
     view: &View,
     store: &Arc<Store>,
+    visited: &mut HashSet<CommitId>,
 ) -> Result<(), CommandError> {
+    if !visited.insert(commit_id.clone()) {
+        return Ok(());
+    }
+
     let tmp: Vec<_> = view
         .local_bookmarks_for_commit(commit_id)
         .map(|(name, _)| name)
@@ -197,7 +208,7 @@ fn find_parent_bookmarks(
     let commit = store.get_commit(commit_id)?;
 
     for p in commit.parent_ids() {
-        find_parent_bookmarks(p, depth + 1, config, bookmarks, view, store)?;
+        find_parent_bookmarks(p, depth + 1, config, bookmarks, view, store, visited)?;
     }
     Ok(())
 }
