@@ -1,5 +1,5 @@
 use std::{
-    collections::{BTreeMap, BTreeSet},
+    collections::{BTreeMap, BTreeSet, HashSet},
     io::Write,
 };
 
@@ -143,7 +143,15 @@ impl Bookmarks {
             return Ok(());
         };
 
-        crate::find_parent_bookmarks(commit_id, 0, &global.bookmarks, &mut bookmarks, view, store)?;
+        crate::find_parent_bookmarks(
+            commit_id,
+            0,
+            &global.bookmarks,
+            &mut bookmarks,
+            view,
+            store,
+            &mut HashSet::new(),
+        )?;
 
         data.bookmarks = Some(bookmarks);
         Ok(())
