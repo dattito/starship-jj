@@ -84,7 +84,7 @@ type = "Metrics"
 color = "Magenta"
 # bg_color = "Yellow"
 # Controls how the changes are rendered, use {added}, {removed} and {changed} to render the number of changes.
-template = "[{changed} {added}{removed}]"
+template = "[{changed} {added} {removed}]"
 
 [module.changed_files]
 # Controlls how the number of changed files is rendered.
