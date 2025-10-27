@@ -4,7 +4,7 @@
   "type": "object",
   "properties": {
     "bookmarks": {
-      "description": "Controls the behaviour of the bookmark finding algorythm.",
+      "description": "Controls the behaviour of the bookmark finding algorithm.",
       "default": {
         "exclude": [],
         "search_depth": 100
@@ -132,7 +132,7 @@
       "type": "object",
       "properties": {
         "exclude": {
-          "description": "Exclude certain bookmarks from the search (supports globs)",
+          "description": "Exclude certain bookmarks from the search (supports globs).",
           "default": [],
           "type": "array",
           "items": {
@@ -288,14 +288,14 @@
           }
         },
         {
-          "description": "Prints information about bookmarks in the working copies ancestors.",
+          "description": "Prints information about bookmarks in the working copy's ancestors.",
           "type": "object",
           "required": [
             "type"
           ],
           "properties": {
             "behind_symbol": {
-              "description": "A suffix that will be printed when the given bookmark is behing the working copy.",
+              "description": "A suffix that will be printed when the given bookmark is behind the working copy.",
               "default": "⇡",
               "type": [
                 "string",
@@ -350,7 +350,7 @@
               "type": "string"
             },
             "surround_with_quotes": {
-              "description": "Do not render quotes around bookmark names",
+              "description": "Do not render quotes around bookmark names.",
               "default": true,
               "type": "boolean"
             },
@@ -363,7 +363,7 @@
           }
         },
         {
-          "description": "Prints the working copies commit text",
+          "description": "Prints the working copy's commit text.",
           "type": "object",
           "required": [
             "type"
@@ -392,7 +392,7 @@
               ]
             },
             "empty_text": {
-              "description": "The text that should be printed when the current revision has no description yet",
+              "description": "The text that should be printed when the current revision has no description yet.",
               "default": "(no description set)",
               "type": "string"
             },
@@ -407,7 +407,7 @@
               "minimum": 0.0
             },
             "surround_with_quotes": {
-              "description": "Do not render quotes around the description",
+              "description": "Do not render quotes around the description.",
               "default": true,
               "type": "boolean"
             },
@@ -497,7 +497,7 @@
               ]
             },
             "separator": {
-              "description": "Text that will be printed between each Warning.",
+              "description": "Text that will be printed between each warning.",
               "default": " ",
               "type": "string"
             },
@@ -510,14 +510,14 @@
           }
         },
         {
-          "description": "Prints the amount of changes in the working copy",
+          "description": "Prints the amount of changes in the working copy.",
           "type": "object",
           "required": [
             "type"
           ],
           "properties": {
             "added_lines": {
-              "description": "Controlls how the number of added lines is rendered.",
+              "description": "Controls how the number of added lines is rendered.",
               "default": {
                 "bg_color": null,
                 "color": "Green",
@@ -542,7 +542,7 @@
               ]
             },
             "changed_files": {
-              "description": "Controlls how the number of changed files is rendered.",
+              "description": "Controls how the number of changed files is rendered.",
               "default": {
                 "bg_color": null,
                 "color": "Cyan",
@@ -567,7 +567,7 @@
               ]
             },
             "removed_lines": {
-              "description": "Controlls how the number of removed lines is rendered.",
+              "description": "Controls how the number of removed lines is rendered.",
               "default": {
                 "bg_color": null,
                 "color": "Red",
@@ -581,7 +581,7 @@
               ]
             },
             "template": {
-              "description": "Controls how the changes are rendered, use {added}, {removed} and {changed} to render the number of changes.",
+              "description": "Controls how the changes are rendered. Use {added}, {removed} and {changed} to render the number of changes.",
               "default": "[{changed} {added}{removed}]",
               "type": "string"
             },
@@ -624,7 +624,7 @@
           ]
         },
         "disabled": {
-          "description": "Do not render this warning",
+          "description": "Do not render this warning.",
           "default": false,
           "type": "boolean"
         },
