@@ -11,7 +11,7 @@ use serde::{Deserialize, Serialize};
 
 use super::util::{Color, Style};
 
-/// Prints information about bookmarks in the working copies ancestors.
+/// Prints information about bookmarks in the working copy's ancestors.
 #[cfg_attr(feature = "json-schema", derive(JsonSchema))]
 #[derive(Deserialize, Serialize, Debug)]
 pub struct Bookmarks {
@@ -21,14 +21,14 @@ pub struct Bookmarks {
     /// Controls how bookmarks are rendered.
     #[serde(flatten)]
     style: Style,
-    /// A suffix that will be printed when the given bookmark is behing the working copy.
+    /// A suffix that will be printed when the given bookmark is behind the working copy.
     #[serde(default = "default_behind_symbol")]
     behind_symbol: Option<char>,
-    /// Maximum amout of bookmarks that will be rendered.
+    /// Maximum amount of bookmarks that will be rendered.
     max_bookmarks: Option<usize>,
     /// Maximum length the bookmark name will be truncated to.
     max_length: Option<usize>,
-    /// Do not render quotes around bookmark names
+    /// Do not render quotes around bookmark names.
     #[serde(default = "default_surround_with_quotes")]
     surround_with_quotes: bool,
 }

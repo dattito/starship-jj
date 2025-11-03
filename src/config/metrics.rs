@@ -7,24 +7,25 @@ use serde::{Deserialize, Serialize};
 
 use super::util::{Color, Style};
 
-/// Prints the amount of changes in the working copy
+/// Prints the amount of changes in the working copy.
 #[cfg_attr(feature = "json-schema", derive(JsonSchema))]
 #[derive(Deserialize, Serialize, Debug)]
 pub struct Metrics {
-    /// Controls how the changes are rendered, use {added}, {removed} and {changed} to render the number of changes.
+    /// Controls how the changes are rendered. Use {added}, {removed} and {changed} to render the number of changes.
     #[serde(default = "default_template")]
     template: String,
 
     // added_files: Style,
     // removed_files: Style,
-    /// Controlls how the number of changed files is rendered.
+    /// Controls how the number of changed files is rendered.
     #[serde(default = "default_changed_files")]
     changed_files: Metric,
 
-    /// Controlls how the number of added lines is rendered.
+    /// Controls how the number of added lines is rendered.
     #[serde(default = "default_added_lines")]
     added_lines: Metric,
-    /// Controlls how the number of removed lines is rendered.
+
+    /// Controls how the number of removed lines is rendered.
     #[serde(default = "default_removed_lines")]
     removed_lines: Metric,
 
