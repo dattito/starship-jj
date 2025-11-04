@@ -8,11 +8,11 @@ use serde::{Deserialize, Serialize};
 
 use super::util::Style;
 
-/// Prints a warning if the working copy contains any conflicts, is divergent or hidden
+/// Prints a warning if the working copy contains any conflicts, is divergent, hidden, immutable, or empty.
 #[cfg_attr(feature = "json-schema", derive(JsonSchema))]
 #[derive(Deserialize, Serialize, Debug)]
 pub struct State {
-    /// Text that will be printed between each Warning.
+    /// Text that will be printed between each warning.
     #[serde(default = "default_separator")]
     separator: String,
     /// Controls how the conflict warning will be rendered.
@@ -21,13 +21,13 @@ pub struct State {
     /// Controls how the divergence warning will be rendered.
     #[serde(default = "default_divergent")]
     divergent: Status,
-    /// Controls how the divergence warning will be rendered.
+    /// Controls how the empty warning will be rendered.
     #[serde(default = "default_empty")]
     empty: Status,
-    /// Controls how the empty warning will be rendered.
+    /// Controls how the immutable warning will be rendered.
     #[serde(default = "default_immutable")]
     immutable: Status,
-    /// Controls how the immutable warning will be rendered.
+    /// Controls how the hidden warning will be rendered.
     #[serde(default = "default_hidden")]
     hidden: Status,
 }
@@ -95,7 +95,7 @@ fn default_divergent() -> Status {
 #[derive(Deserialize, Serialize, Debug, Default)]
 struct Status {
     #[serde(default)]
-    /// Do not render this warning
+    /// Do not render this warning.
     disabled: bool,
     /// The text that should be printed when the working copy has the given state.
     text: String,

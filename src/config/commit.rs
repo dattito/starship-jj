@@ -7,20 +7,20 @@ use serde::{Deserialize, Serialize};
 
 use super::util::Style;
 
-/// Prints the working copies commit text
+/// Prints the working copy's commit text.
 #[cfg_attr(feature = "json-schema", derive(JsonSchema))]
 #[derive(Deserialize, Serialize, Debug)]
 pub struct Commit {
     /// Maximum length the commit text will be truncated to.
     #[serde(default = "default_max_length")]
     max_length: Option<usize>,
-    /// The text that should be printed when the current revision has no description yet
+    /// The text that should be printed when the current revision has no description yet.
     #[serde(default = "default_empty_text")]
     empty_text: String,
     /// Controls how the commit text is rendered.
     #[serde(flatten)]
     style: Style,
-    /// Do not render quotes around the description
+    /// Render quotes around the description.
     #[serde(default = "default_surround_with_quotes")]
     surround_with_quotes: bool,
 }

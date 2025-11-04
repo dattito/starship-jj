@@ -13,7 +13,7 @@ pub struct Symbol {
     /// Text that will be rendered between each bookmark.
     #[serde(default = "default_symbol")]
     symbol: String,
-    /// Controls how bookmarks are rendered.
+    /// Controls how the symbol is rendered.
     #[serde(flatten)]
     style: Style,
 }

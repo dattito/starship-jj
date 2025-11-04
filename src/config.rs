@@ -39,10 +39,10 @@ pub struct GlobalConfig {
     /// Text that will be printed between each Module.
     #[serde(default = "default_separator")]
     module_separator: String,
-    /// Timeout after wich the process is teminated.
+    /// Timeout after which the process is teminated.
     #[serde(default)]
     timeout: Option<u64>,
-    /// Controls the behaviour of the bookmark finding algorythm.
+    /// Controls the behaviour of the bookmark finding algorithm.
     #[serde(default)]
     pub bookmarks: BookmarkConfig,
     /// Controls whether color gets reset at the end.
@@ -74,7 +74,7 @@ pub struct BookmarkConfig {
     /// Controls how far we are looking back to find bookmarks.
     #[serde(default = "default_search_depth")]
     pub search_depth: usize,
-    /// Exclude certain bookmarks from the search (supports globs)
+    /// Exclude certain bookmarks from the search (supports globs).
     #[serde(default)]
     #[cfg(feature = "json-schema")]
     pub exclude: Vec<String>,
@@ -154,7 +154,7 @@ impl Config {
     }
 }
 
-/// A module that prints some info about the current jj repo
+/// A module that prints some info about the current jj repo.
 #[cfg_attr(feature = "json-schema", derive(JsonSchema))]
 #[derive(Deserialize, Serialize, Debug)]
 #[serde(tag = "type")]
