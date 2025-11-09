@@ -31,6 +31,9 @@ pub struct Metrics {
 
     #[serde(flatten, default = "default_style")]
     style: Style,
+
+    #[serde(default = "default_hide_if_empty")]
+    hide_if_empty: bool,
 }
 
 impl Default for Metrics {
@@ -41,6 +44,7 @@ impl Default for Metrics {
             changed_files: default_changed_files(),
             added_lines: default_added_lines(),
             removed_lines: default_removed_lines(),
+            hide_if_empty: default_hide_if_empty(),
         }
     }
 }
@@ -51,6 +55,10 @@ fn default_removed_lines() -> Metric {
         prefix: "-".to_string(),
         ..Default::default()
     }
+}
+
+fn default_hide_if_empty() -> bool {
+    false
 }
 
 fn default_removed_style() -> Style {
@@ -145,6 +153,14 @@ impl Metrics {
         let Some(diff) = &data.commit.diff else {
             return Ok(());
         };
+
+        if self.hide_if_empty
+            && diff.lines_added == 0
+            && diff.lines_removed == 0
+            && diff.files_changed == 0
+        {
+            return Ok(());
+        }
 
         let context = Context {
             added: self
